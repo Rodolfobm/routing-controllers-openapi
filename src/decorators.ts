@@ -26,15 +26,15 @@ export type OpenAPIParam =
  */
 export function OpenAPI(spec: OpenAPIParam) {
   // tslint:disable-next-line:ban-types
-  return (...args: [Function] | [object, string, PropertyDescriptor]) => {
+  return (...args: Array<Function | object | string | PropertyDescriptor>) => {
     if (args.length === 1) {
       const [target] = args
-      const currentMeta = getOpenAPIMetadata(target)
-      setOpenAPIMetadata([spec, ...currentMeta], target)
+      const currentMeta = getOpenAPIMetadata(target as Object)
+      setOpenAPIMetadata([spec, ...currentMeta], target as Object)
     } else {
       const [target, key] = args
-      const currentMeta = getOpenAPIMetadata(target, key)
-      setOpenAPIMetadata([spec, ...currentMeta], target, key)
+      const currentMeta = getOpenAPIMetadata(target as Object, key as string)
+      setOpenAPIMetadata([spec, ...currentMeta], target as Object, key as string)
     }
   }
 }
