@@ -71,7 +71,7 @@ export function getPaths(routes: IRoute[]): oa.PathObject {
  * Return header parameters of given route.
  */
 export function getHeaderParams(route: IRoute): oa.ParameterObject[] {
-  const headers: oa.ParameterObject[1] = _(route.params)
+  const headers: oa.ParameterObject[0] = _(route.params)
     .filter({ type: 'header' })
     .map(headerMeta => {
       const schema = getParamSchema(headerMeta) as oa.SchemaObject
@@ -138,7 +138,7 @@ export function getPathParams(route: IRoute): oa.ParameterObject[] {
  * Return query parameters of given route.
  */
 export function getQueryParams(route: IRoute): oa.ParameterObject[] {
-  const queries: oa.ParameterObject[1] = _(route.params)
+  const queries: oa.ParameterObject[0] = _(route.params)
     .filter({ type: 'query' })
     .map(queryMeta => {
       const schema = getParamSchema(queryMeta) as oa.SchemaObject
